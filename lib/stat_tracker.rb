@@ -1,4 +1,4 @@
-require 'CSV'
+require          'CSV'
 require_relative 'game'
 require_relative 'game_stats'
 require_relative 'league_stats'
@@ -7,36 +7,28 @@ require_relative 'season_stats'
 require_relative 'team_stats'
 require_relative 'helper_methods'
 require_relative 'team'
-require 'pry'
 class StatTracker
   attr_reader :game_stats,
               :league_stats,
               :season_stats
-
   def self.from_csv(locations)
     StatTracker.new(locations)
   end
 
   def initialize(locations)
-    @games = locations[:games]
-    @teams = locations[:teams]
+    @games      = locations[:games]
+    @teams      = locations[:teams]
     @game_teams = locations[:game_teams]
   end
 
   def initialize(locations)
-    game_path = locations[:games]
+    game_path       = locations[:games]
     game_teams_path = locations[:game_teams]
-    team_path = locations[:teams]
-    @game_stats = GameStats.new(game_path)
-    @league_stats = LeagueStats.new(game_teams_path, game_path, team_path, self)
-    @season_stats = SeasonStats.new(game_teams_path, game_path, team_path)
-    @team_stats = TeamStats.new(game_teams_path, game_path, team_path)
-    # @teams = locations[:teams]
-    # @game_teams = locations[:game_teams]
-  end
-
-  def find_games_by_team_id(team_id)
-    @game_stats.find_games_by_team_id(team_id)
+    team_path       = locations[:teams]
+    @game_stats     = GameStats.new(game_path, self)
+    @league_stats   = LeagueStats.new(game_teams_path, game_path, team_path, self)
+    @season_stats   = SeasonStats.new(game_teams_path, game_path, team_path, self)
+    @team_stats     = TeamStats.new(game_teams_path, game_path, team_path, self)
   end
 
   def highest_total_score
@@ -70,7 +62,7 @@ class StatTracker
   def average_goals_by_season
     @game_stats.average_goals_by_season
   end
-#league_stats
+
   def count_of_teams
     @league_stats.count_of_teams
   end
@@ -98,7 +90,7 @@ class StatTracker
   def lowest_scoring_home_team
     @league_stats.lowest_scoring_home_team
   end
-#team_stats
+
   def team_info(team_id)
     @team_stats.team_info(team_id)
   end
@@ -130,7 +122,7 @@ class StatTracker
   def rival(team_id)
     @team_stats.rival(team_id)
   end
-#season_stats
+
   def winningest_coach(season_id)
     @season_stats.winningest_coach(season_id)
   end

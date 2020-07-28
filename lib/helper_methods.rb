@@ -1,23 +1,10 @@
-# require 'CSV'
+require 'CSV'
 require_relative './game_teams'
 require_relative './game'
 require_relative './team'
 require 'pry'
 
 module HelperMethods
-
-  # attr_reader :game_teams,
-  #             :teams,
-  #             :games
-  #
-  # def initialize(filepath1, filepath2, filepath3)
-  #   game_teams = []
-  #   games      = []
-  #   teams      = []
-  #   load_game_teams(filepath1)
-  #   load_games(filepath2)
-  #   load_teams(filepath3)
-  # end
 
   def self.load_game_teams(filepath1)
     game_teams = []
@@ -45,12 +32,6 @@ module HelperMethods
 
   def self.game_teams_find_by_game_id(game_id)
     game_teams.find do |season_stat|
-      season_stat.game_id == game_id
-    end
-  end
-
-  def self.games_find_by_game_id(game_id)
-    games.find do |season_stat|
       season_stat.game_id == game_id
     end
   end

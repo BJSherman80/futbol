@@ -1,7 +1,7 @@
 require 'CSV'
 require_relative 'game'
 
-class GameStats < Game
+class GameStats
   attr_reader :games
   def initialize(filepath)
     @games = []
@@ -17,6 +17,12 @@ class GameStats < Game
   def find_games_by_team_id(team_id)
     @games.find_all do |game|
       game.team_id == team_id
+    end
+  end
+
+  def games_find_by_game_id(game_id)
+    @games.find do |season_stat|
+      season_stat.game_id == game_id
     end
   end
 
