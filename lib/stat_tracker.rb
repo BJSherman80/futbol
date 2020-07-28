@@ -7,6 +7,10 @@ require_relative 'season_stats'
 require_relative 'team_stats'
 require_relative 'helper_methods'
 require_relative 'team'
+<<<<<<< HEAD
+=======
+
+>>>>>>> 547704e876449a2cacf3cdc03c87ce530a2efc21
 class StatTracker
   attr_reader :game_stats,
               :league_stats,
@@ -25,10 +29,17 @@ class StatTracker
     game_path       = locations[:games]
     game_teams_path = locations[:game_teams]
     team_path       = locations[:teams]
+<<<<<<< HEAD
     @game_stats     = GameStats.new(game_path, self)
     @league_stats   = LeagueStats.new(game_teams_path, game_path, team_path, self)
     @season_stats   = SeasonStats.new(game_teams_path, game_path, team_path, self)
     @team_stats     = TeamStats.new(game_teams_path, game_path, team_path, self)
+=======
+    @game_stats     = GameStats.new(game_path)
+    @league_stats   = LeagueStats.new(game_teams_path, game_path, team_path)
+    @season_stats   = SeasonStats.new(game_teams_path, game_path, team_path)
+    @team_stats     = TeamStats.new(game_teams_path, game_path, team_path)
+>>>>>>> 547704e876449a2cacf3cdc03c87ce530a2efc21
   end
 
   def highest_total_score
@@ -146,5 +157,4 @@ class StatTracker
   def fewest_tackles(season_id)
     @season_stats.fewest_tackles(season_id)
   end
-
 end

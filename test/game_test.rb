@@ -53,8 +53,14 @@ class GameTest < Minitest::Test
     game1 = Game.new({away_goals: "4", home_goals: "5"})
     game2 = Game.new({away_goals: "2", home_goals: "3"})
     game3 = Game.new({away_goals: "1", home_goals: "2"})
+<<<<<<< HEAD
     assert_equal "9", game1.total_goals_for_game
     assert_equal "5", game2.total_goals_for_game
     assert_equal "3", game3.total_goals_for_game
+=======
+    assert_equal 9, game1.total_goals_for_game
+    assert_equal 5, game2.total_goals_for_game
+    assert_equal 3, game3.total_goals_for_game
+>>>>>>> 547704e876449a2cacf3cdc03c87ce530a2efc21
   end
 end
