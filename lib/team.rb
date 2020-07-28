@@ -12,6 +12,5 @@ class Team
     @abbreviation = teams_info[:abbreviation]
     @stadium      = teams_info[:stadium]
     @link         = teams_info[:link]
-    @stats = stats
   end
 end

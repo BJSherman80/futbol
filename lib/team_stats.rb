@@ -21,14 +21,6 @@ class TeamStats
     team_info
   end
 
-<<<<<<< HEAD
-  def find_games_by_team_id(team_id)
-    @stat_tracker.find_games_by_team_id(team_id)
-  end
-
-  def largest_hash_value(hash)
-    hash.max_by{|k,v| v}
-=======
   def get_games_by_team_id_array(team_id)
     games_by_team_id_array = []
     @games.each do |game|
@@ -37,7 +29,6 @@ class TeamStats
       end
     end
     games_by_team_id_array
->>>>>>> 547704e876449a2cacf3cdc03c87ce530a2efc21
   end
 
   def games_by_team_id(team_id)

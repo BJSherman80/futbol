@@ -8,8 +8,6 @@ class SeasonStats
     @games      = HelperMethods.load_games(filepath2)
     @teams      = HelperMethods.load_teams(filepath3)
   end
-<<<<<<< HEAD
-=======
 
   def find_this_season(the_season)
     this_season = []
@@ -118,7 +116,6 @@ class SeasonStats
     coach_and_wins
   end
 
->>>>>>> 547704e876449a2cacf3cdc03c87ce530a2efc21
   def winningest_coach(the_season)
     find_head_coach_best_worst(@games, @game_teams, the_season, "WIN").max_by {|x| x[1]}[0]
   end
@@ -126,26 +123,15 @@ class SeasonStats
     find_head_coach_best_worst(@games, @game_teams, the_season, "WIN").min_by {|x| x[1]}[0]
   end
   def most_accurate_team(the_season)
-<<<<<<< HEAD
-    game_teams_by_id = HelperMethods.find_teams_by_game_id(game_teams)
-    this_season = HelperMethods.find_this_season(the_season)
-    this_season_game_ids = @stat_tracker.find_games_by_game_id(this_season)
-    game_list = HelperMethods.find_game_list(game_teams_by_id, this_season_game_ids)
-=======
     game_teams_by_id = find_teams_by_game_id(game_teams)
     this_season = find_this_season(the_season)
     this_season_game_ids = find_games_by_game_id(this_season)
     game_list = find_game_list(game_teams_by_id, this_season_game_ids)
->>>>>>> 547704e876449a2cacf3cdc03c87ce530a2efc21
     teams_by_id = HelperMethods.find_teams_by_team_id(game_list)
     team_and_accuracy = find_team_and_accuracy(teams_by_id)
     best_team = HelperMethods.largest_hash_value(team_and_accuracy)
     team_name = HelperMethods.find_team_name(best_team)
-<<<<<<< HEAD
-    team_name
-=======
     team_name[0]
->>>>>>> 547704e876449a2cacf3cdc03c87ce530a2efc21
   end
   def least_accurate_team(the_season)
     game_teams_by_id = find_teams_by_game_id(game_teams)
