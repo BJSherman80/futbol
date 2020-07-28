@@ -30,6 +30,11 @@ class TeamStats
     hash
   end
 
+  def find_games_by_team_id(team_id)
+    @stat_tracker.find_games_by_team_id(team_id)
+
+  end
+
   def largest_hash_value(hash)
     hash.max_by{|k,v| v}
   end

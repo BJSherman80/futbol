@@ -14,6 +14,12 @@ class GameStats < Game
     end
   end
 
+  def find_games_by_team_id(team_id)
+    @games.find_all do |game|
+      game.team_id == team_id
+    end
+  end
+
   def find_by_id(game_id)
     @games.find do |game|
       game.game_id == game_id

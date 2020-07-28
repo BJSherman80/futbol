@@ -28,11 +28,15 @@ class StatTracker
     game_teams_path = locations[:game_teams]
     team_path = locations[:teams]
     @game_stats = GameStats.new(game_path)
-    @league_stats = LeagueStats.new(game_teams_path, game_path, team_path)
+    @league_stats = LeagueStats.new(game_teams_path, game_path, team_path, self)
     @season_stats = SeasonStats.new(game_teams_path, game_path, team_path)
     @team_stats = TeamStats.new(game_teams_path, game_path, team_path)
     # @teams = locations[:teams]
     # @game_teams = locations[:game_teams]
+  end
+
+  def find_games_by_team_id(team_id)
+    @game_stats.find_games_by_team_id(team_id)
   end
 
   def highest_total_score
