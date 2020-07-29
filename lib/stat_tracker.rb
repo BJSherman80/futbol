@@ -16,12 +16,6 @@ class StatTracker
   def self.from_csv(locations)
     StatTracker.new(locations)
   end
-  #
-  # def initialize(locations)
-  #   @games      = locations[:games]
-  #   @teams      = locations[:teams]
-  #   @game_teams = locations[:game_teams]
-  # end
 
   def initialize(locations)
     game_path       = locations[:games]
