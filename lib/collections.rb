@@ -13,6 +13,7 @@ class Collections
     load_games(filepath1)
     load_teams(filepath2)
     load_game_teams(filepath3)
+    binding.pry
   end
 
   def load_games(filepath1)
@@ -35,9 +36,5 @@ class Collections
       @game_teams << GameTeams.new(data)
     end
   end
-
-
-
-
 
 end

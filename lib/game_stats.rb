@@ -1,15 +1,12 @@
 require 'CSV'
 require_relative 'game'
 require_relative 'collections'
-
+require 'pry'
 class GameStats < Collections
-  attr_reader :games
   def initialize(game_path, team_path, game_teams_path)
-
-    @teams = super
-     @games = super
-     @game_teams = super
-    # load_games(filepath)
+      @teams = super
+      @games = super
+      @game_teams = super
   end
 
 
@@ -33,6 +30,7 @@ class GameStats < Collections
   end
 
   def highest_total_score
+    binding.pry
     highest_score = @games.max_by do |game|
       (game.home_goals.to_i) + (game.away_goals.to_i)
     end

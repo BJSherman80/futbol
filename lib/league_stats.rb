@@ -1,9 +1,6 @@
 require_relative './helper_methods'
 require_relative 'collections'
 class LeagueStats < Collections
-  attr_reader :game_teams,
-              :teams,
-              :games
    def initialize(game_path, team_path, game_teams_path)
     # @@game_teams = HelperMethods.load_@game_teams(filepath1)
     # @games      = HelperMethods.load_games(filepath2)
@@ -46,8 +43,14 @@ class LeagueStats < Collections
     end.count
   end
 
+  def find_teams_by_team_id(game_teams)
+    @game_teams.group_by do |game_team|
+      game_team.team_id
+    end
+  end
+
   def best_offense
-    teams_by_id = HelperMethods.find_teams_by_team_id(@game_teams)
+    teams_by_id = find_teams_by_team_id(@game_teams)
     team_and_total_score = all_the_goals(teams_by_id)
     top_scorer = HelperMethods.largest_hash_value(team_and_total_score)
     best_team = HelperMethods.find_team_name(top_scorer)

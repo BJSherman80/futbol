@@ -38,8 +38,8 @@ module HelperMethods
     hash.min_by{|key, value| value}
   end
 
-  def self.find_teams_by_team_id(game_teams)
-    game_teams.group_by do |game_team|
+  def self.find_teams_by_team_id
+    @game_teams.group_by do |game_team|
       game_team.team_id
     end
   end
