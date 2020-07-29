@@ -5,7 +5,7 @@ require './lib/game.rb'
 require 'CSV'
 class GameStatsTest < Minitest::Test
   def test_it_exists
-    game_stats = GameStats.new("./test/fixtures/games.csv")
+    game_stats = GameStats.new(stat_tracker)
     assert_instance_of GameStats, game_stats
   end
   def test_game_stats_has_games

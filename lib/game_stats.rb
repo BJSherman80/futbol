@@ -1,23 +1,23 @@
 require 'CSV'
 require_relative 'game'
+require_relative 'collections'
 
-class GameStats
+class GameStats < Collections
   attr_reader :games
-  def initialize(filepath)
-    @games = []
-    load_games(filepath)
+  def initialize(game_path, team_path, game_teams_path)
+
+    @teams = super
+     @games = super
+     @game_teams = super
+    # load_games(filepath)
   end
 
-  def load_games(filepath)
-    CSV.foreach(filepath, headers: true, header_converters: :symbol) do |data|
-      @games << Game.new(data)
-    end
-  end
 
   def find_games_by_team_id(team_id)
     @games.find_all do |game|
       game.team_id == team_id
     end
+
   end
 
   def games_find_by_game_id(game_id)

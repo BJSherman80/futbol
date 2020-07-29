@@ -7,6 +7,7 @@ require_relative 'season_stats'
 require_relative 'team_stats'
 require_relative 'helper_methods'
 require_relative 'team'
+require_relative 'collections'
 
 class StatTracker
   attr_reader :game_stats,
@@ -15,25 +16,26 @@ class StatTracker
   def self.from_csv(locations)
     StatTracker.new(locations)
   end
-
-  def initialize(locations)
-    @games      = locations[:games]
-    @teams      = locations[:teams]
-    @game_teams = locations[:game_teams]
-  end
+  #
+  # def initialize(locations)
+  #   @games      = locations[:games]
+  #   @teams      = locations[:teams]
+  #   @game_teams = locations[:game_teams]
+  # end
 
   def initialize(locations)
     game_path       = locations[:games]
     game_teams_path = locations[:game_teams]
     team_path       = locations[:teams]
-    @game_stats     = GameStats.new(game_path)
-    @league_stats   = LeagueStats.new(game_teams_path, game_path, team_path)
-    @season_stats   = SeasonStats.new(game_teams_path, game_path, team_path)
-    @team_stats     = TeamStats.new(game_teams_path, game_path, team_path)
+    collections     = Collections.new(game_path, team_path, game_teams_path)
+    @game_stats     = GameStats.new(game_path, team_path, game_teams_path)
+    @league_stats   = LeagueStats.new(game_path, team_path, game_teams_path)
+    @season_stats   = SeasonStats.new(game_path, team_path, game_teams_path)
+    @team_stats     = TeamStats.new(game_path, team_path, game_teams_path)
   end
 
   def highest_total_score
-    @game_stats.highest_total_score
+     @game_stats.highest_total_score
   end
 
   def lowest_total_score

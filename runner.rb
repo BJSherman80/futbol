@@ -11,5 +11,5 @@ locations = {
 }
 
 stat_tracker = StatTracker.from_csv(locations)
-
-require 'pry'; binding.pry
+binding.pry
+stat_tracker.highest_total_score

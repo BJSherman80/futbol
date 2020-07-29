@@ -1,12 +1,16 @@
 require_relative './helper_methods'
-class SeasonStats
+require_relative 'collections'
+class SeasonStats < Collections
   attr_reader :game_teams,
               :teams,
               :games
-  def initialize(filepath1 = nil, filepath2 = nil, filepath3 = nil)
-    @game_teams = HelperMethods.load_game_teams(filepath1)
-    @games      = HelperMethods.load_games(filepath2)
-    @teams      = HelperMethods.load_teams(filepath3)
+  def initialize(game_path, team_path, game_teams_path)
+    # @game_teams = HelperMethods.load_game_teams(filepath1)
+    # @games      = HelperMethods.load_games(filepath2)
+    # @teams      = HelperMethods.load_teams(filepath3)
+    @teams = super
+     @games = super
+     @game_teams = super
   end
 
   def find_this_season(the_season)
@@ -123,7 +127,7 @@ class SeasonStats
     find_head_coach_best_worst(@games, @game_teams, the_season, "WIN").min_by {|x| x[1]}[0]
   end
   def most_accurate_team(the_season)
-    game_teams_by_id = find_teams_by_game_id(game_teams)
+    game_teams_by_id = find_teams_by_game_id(@game_teams)
     this_season = find_this_season(the_season)
     this_season_game_ids = find_games_by_game_id(this_season)
     game_list = find_game_list(game_teams_by_id, this_season_game_ids)
@@ -134,7 +138,7 @@ class SeasonStats
     team_name[0]
   end
   def least_accurate_team(the_season)
-    game_teams_by_id = find_teams_by_game_id(game_teams)
+    game_teams_by_id = find_teams_by_game_id(@game_teams)
     this_season = find_this_season(the_season)
     this_season_game_ids = find_games_by_game_id(this_season)
     game_list = find_game_list(game_teams_by_id, this_season_game_ids)
@@ -146,7 +150,7 @@ class SeasonStats
   end
   def most_tackles(the_season)
     this_season = find_this_season(the_season)
-    game_teams_by_id = find_teams_by_game_id(game_teams)
+    game_teams_by_id = find_teams_by_game_id(@game_teams)
     this_season_game_ids = find_games_by_game_id(this_season)
     game_list = find_game_list(game_teams_by_id, this_season_game_ids)
     teams_by_id = HelperMethods.find_teams_by_team_id(game_list)
@@ -157,7 +161,7 @@ class SeasonStats
   end
   def fewest_tackles(the_season)
     this_season = find_this_season(the_season)
-    game_teams_by_id = find_teams_by_game_id(game_teams)
+    game_teams_by_id = find_teams_by_game_id(@game_teams)
     this_season_game_ids = find_games_by_game_id(this_season)
     game_list = find_game_list(game_teams_by_id, this_season_game_ids)
     teams_by_id = HelperMethods.find_teams_by_team_id(game_list)

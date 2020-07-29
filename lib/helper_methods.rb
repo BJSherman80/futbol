@@ -6,29 +6,29 @@ require 'pry'
 
 module HelperMethods
 
-  def self.load_game_teams(filepath1)
-    game_teams = []
-    CSV.foreach(filepath1, headers: true, header_converters: :symbol) do |data|
-      game_teams << GameTeams.new(data)
-    end
-    game_teams
-  end
-
-  def self.load_games(filepath2)
-    @games = []
-    CSV.foreach(filepath2, headers: true, header_converters: :symbol) do |data|
-      @games << Game.new(data)
-    end
-    @games
-  end
-
-  def self.load_teams(filepath3)
-    @teams = []
-    CSV.foreach(filepath3, headers: true, header_converters: :symbol) do |data|
-      @teams << Team.new(data)
-    end
-    @teams
-  end
+  # def self.load_game_teams(filepath1)
+  #   game_teams = []
+  #   CSV.foreach(filepath1, headers: true, header_converters: :symbol) do |data|
+  #     game_teams << GameTeams.new(data)
+  #   end
+  #   game_teams
+  # end
+  #
+  # def self.load_games(filepath2)
+  #   @games = []
+  #   CSV.foreach(filepath2, headers: true, header_converters: :symbol) do |data|
+  #     @games << Game.new(data)
+  #   end
+  #   @games
+  # end
+  #
+  # def self.load_teams(filepath3)
+  #   @teams = []
+  #   CSV.foreach(filepath3, headers: true, header_converters: :symbol) do |data|
+  #     @teams << Team.new(data)
+  #   end
+  #   @teams
+  # end
 
   def self.largest_hash_value(hash)
     hash.max_by{|key, value| value}

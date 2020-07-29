@@ -1,22 +1,27 @@
 require_relative './helper_methods'
-class LeagueStats
+require_relative 'collections'
+class LeagueStats < Collections
   attr_reader :game_teams,
               :teams,
               :games
-  def initialize(filepath1 = nil, filepath2 = nil, filepath3 = nil)
-    @game_teams = HelperMethods.load_game_teams(filepath1)
-    @games      = HelperMethods.load_games(filepath2)
-    @teams      = HelperMethods.load_teams(filepath3)
+   def initialize(game_path, team_path, game_teams_path)
+    # @@game_teams = HelperMethods.load_@game_teams(filepath1)
+    # @games      = HelperMethods.load_games(filepath2)
+    # @teams      = HelperMethods.load_teams(filepath3)
+    @teams = super
+     @games = super
+     @game_teams = super
   end
 
-  def find_away_games(game_teams)
-    game_teams.find_all do |game_team|
+
+  def find_away_games
+    @game_teams.find_all do |game_team|
       game_team.hoa == "away"
     end
   end
 
-  def find_home_games(game_teams)
-    game_teams.find_all do |game_team|
+  def find_home_games
+    @game_teams.find_all do |game_team|
       game_team.hoa == "home"
     end
   end
@@ -42,7 +47,7 @@ class LeagueStats
   end
 
   def best_offense
-    teams_by_id = HelperMethods.find_teams_by_team_id(game_teams)
+    teams_by_id = HelperMethods.find_teams_by_team_id(@game_teams)
     team_and_total_score = all_the_goals(teams_by_id)
     top_scorer = HelperMethods.largest_hash_value(team_and_total_score)
     best_team = HelperMethods.find_team_name(top_scorer)
@@ -50,7 +55,7 @@ class LeagueStats
   end
 
   def worst_offense
-    teams_by_id = HelperMethods.find_teams_by_team_id(game_teams)
+    teams_by_id = HelperMethods.find_teams_by_team_id(@game_teams)
     team_and_total_score = all_the_goals(teams_by_id)
     bottom_scorer = HelperMethods.smallest_hash_value(team_and_total_score)
     worst_team = HelperMethods.find_team_name(bottom_scorer)
@@ -58,7 +63,7 @@ class LeagueStats
   end
 
   def highest_scoring_visitor
-    away_games = find_away_games(game_teams)
+    away_games = find_away_games
     teams_by_id = HelperMethods.find_teams_by_team_id(away_games)
     team_and_total_score = all_the_goals(teams_by_id)
     top_scorer = HelperMethods.largest_hash_value(team_and_total_score)
@@ -67,7 +72,7 @@ class LeagueStats
   end
 
   def highest_scoring_home_team
-    home_games = find_home_games(game_teams)
+    home_games = find_home_games
     teams_by_id = HelperMethods.find_teams_by_team_id(home_games)
     team_and_total_score = all_the_goals(teams_by_id)
     top_scorer = HelperMethods.largest_hash_value(team_and_total_score)
@@ -76,7 +81,7 @@ class LeagueStats
   end
 
   def lowest_scoring_visitor
-    away_games = find_away_games(game_teams)
+    away_games = find_away_games
     teams_by_id = HelperMethods.find_teams_by_team_id(away_games)
     team_and_total_score = all_the_goals(teams_by_id)
     bottom_scorer = HelperMethods.smallest_hash_value(team_and_total_score)
@@ -85,7 +90,7 @@ class LeagueStats
   end
 
   def lowest_scoring_home_team
-    home_games = find_home_games(game_teams)
+    home_games = find_home_games
     teams_by_id = HelperMethods.find_teams_by_team_id(home_games)
     team_and_total_score = all_the_goals(teams_by_id)
     bottom_scorer = HelperMethods.smallest_hash_value(team_and_total_score)

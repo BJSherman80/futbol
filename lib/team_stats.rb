@@ -1,13 +1,18 @@
 require_relative './helper_methods'
-class TeamStats
+require_relative 'collections'
+
+class TeamStats < Collections
   attr_reader :game_teams,
               :teams,
               :games
 
-  def initialize(filepath1, filepath2, filepath3)
-    @game_teams = HelperMethods.load_game_teams(filepath1)
-    @games      = HelperMethods.load_games(filepath2)
-    @teams      = HelperMethods.load_teams(filepath3)
+  def initialize(game_path, team_path, game_teams_path)
+    # @game_teams = HelperMethods.load_game_teams(filepath1)
+    # @games      = HelperMethods.load_games(filepath2)
+    # @teams      = HelperMethods.load_teams(filepath3)
+    @teams = super
+     @games = super
+     @game_teams = super
   end
 
   def team_info(team_id)
